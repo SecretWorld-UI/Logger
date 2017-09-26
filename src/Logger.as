@@ -14,7 +14,7 @@ class Logger
 	private static var INFO1:Number = 2;
 	private static var INFO0:Number = 1;
 	private static var PRINT:Number = 0;
-	
+
 	private var origLogError:Function;
 	private var origLogWarning:Function;
 	private var origLogInfo2:Function;
@@ -23,7 +23,6 @@ class Logger
 	private var origLogPrint:Function;
 	private var origGetMsgCache:Function;
 
-	private var MsgLog:Array;
 	private var MsgCache:Array;
 
 	/**
@@ -41,7 +40,6 @@ class Logger
 	public function Logger(swfRoot: MovieClip)
 	{
 		// Initialize MsgLog and MsgCache as empty;
-		MsgLog = new Array()
 		MsgCache = new Array();
 	}
 
@@ -54,7 +52,7 @@ class Logger
 	{
 		DeactivateHooks();
 	}
-	
+
 	private function ActivateHooks()
 	{
 		origLogError = Log.Error;
@@ -72,7 +70,7 @@ class Logger
 		origGetMsgCache = Log.GetMsgCache;
 		Log.GetMsgCache = Delegate.create(this, GetMsgCache);
 	}
-	
+
 	private function DeactivateHooks()
 	{
 		Log.Error = origLogError;
@@ -107,7 +105,7 @@ class Logger
 		LogMsg(INFO1, category, message);
 		origLogInfo1(category, message);
 	}
-	
+
 	public function Info0(category:String, message:Object) : Void
 	{
 		LogMsg(INFO0, category, message);
@@ -126,11 +124,12 @@ class Logger
 
 		// Add elements to the Msg Array
 		Msg.push(logSeverity, category, message);
+
 		// Add Msg to existing Log
-		MsgLog.push(Msg);
 		MsgCache.push(Msg);
 	}
-	
+
+	// Return an array of strings as expected by LogWindow.swf
 	public function GetMsgCache():Array
 	{
 		var msgArray:Array = new Array();

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Root>
   <Value name="Logger" value="true" />
-  <Archive name="Logger_Cfg" />
 </Root>
